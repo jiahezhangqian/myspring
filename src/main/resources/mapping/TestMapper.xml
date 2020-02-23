@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myspring.myspring.mapper.TestMapper">
+
+    <resultMap id="baseResultMap" type="com.myspring.myspring.entity.Test">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+
+    <select id="getAll" resultMap="baseResultMap">
+        select * from test
+        order by id desc
+        limit #{everyPageCount} offset #{offsetPage}
+    </select>
+
+    <insert id="doInsert">
+        insert into test (name) values (#{name})
+    </insert>
+
+    <update id="doUpdate">
+        update test set name = #{name} where id = #{id}
+    </update>
+
+    <delete id="doDelete">
+        delete from test where id = #{id}
+    </delete>
+</mapper>
